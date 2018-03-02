@@ -6,7 +6,13 @@ const mongoose = require('mongoose'),
 // Define our model
 const userSchema = new Schema({
 	email: { type: String, unique: true, lowercase: true },
-	password: String 
+	password: String,
+	firstName:  String,
+	lastName:  String,
+	about:  String,
+	portfolio: String,
+	github: String,
+	linkedin: String
 });
 
 // On save Hook, encrypt password

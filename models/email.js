@@ -7,6 +7,7 @@ const userSchema = new Schema({
 	name: String 
 });
 
+
 const ModelClass = mongoose.model('invitation', userSchema);
 
 module.exports = ModelClass; 

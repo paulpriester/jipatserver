@@ -33,6 +33,7 @@ const jwtOptions = {
 };
 
 // Create JWT strategy
+
 const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
 	// See if the user Id in the payload exists in our database
 	// If it does, call 'done' with that other
