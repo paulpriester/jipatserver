@@ -3,10 +3,14 @@ const mongoose = require('mongoose'),
 
 
 const jobSchema = new Schema({
-	title: { type: String, lowercase: true },
+	title: { type: String },
 	jobid: { type: String},
 	location: {type: String},
 	description: {type: String},
+	company: String,
+	how_to_apply: String,
+	created_at: String,
+	type: String,
 	byuser: {type: Boolean, default: false}
 });
 
