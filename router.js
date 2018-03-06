@@ -1,5 +1,7 @@
 const Authentication = require('./controllers/authentication');
 const Jobs = require('./controllers/jobs');
+const fetchJobs = require('./controllers/fetchjobs');
+const deleteJob = require('./controllers/deletejob');
 const passportService = require('./services/passport');
 const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
@@ -14,5 +16,6 @@ module.exports = function(app) {
 	app.post('/signup', Authentication.signup);
 	app.post('/invite', Authentication.invite);
 	app.put('/profile',  Authentication.signupDetail);
-	app.get('/jobs', Jobs.saveJob);
+	app.get('/fetchJobs', fetchJobs.fetchJob)
+	app.delete('/deletejob/:id', deleteJob.deleteJob)
 }
