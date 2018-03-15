@@ -2,9 +2,10 @@ const Authentication = require('./controllers/authentication');
 const Invite = require('./controllers/invite')
 const Jobs = require('./controllers/jobs');
 const Case = require('./controllers/cases');
+const fetchCase = require('./controllers/fetchcases')
 const fetchJobs = require('./controllers/fetchjobs');
 const deleteJob = require('./controllers/deletejob');
-const addJob = require('./controllers/addjob')
+const addJob = require('./controllers/addjob');
 const fetchStudents = require('./controllers/users');
 const passportService = require('./services/passport');
 const passport = require('passport');
@@ -20,9 +21,10 @@ module.exports = function(app) {
 	app.post('/signup', Authentication.signup);
 	app.post('/invite', Invite.invite);
 	app.post('/profile',  Authentication.signupDetail);
+	app.get('/fetchUsers', fetchStudents.fetchStudent);
 	app.get('/fetchJobs', fetchJobs.fetchJob);
 	app.post('/addjob', addJob.Jobs);
-	app.get('/fetchUsers', fetchStudents.fetchStudent);
 	app.delete('/deletejob/:id', deleteJob.deleteJob);
-	app.post('/case', Case.cases);
+	app.post('/addcase/:id', requireAuth, Case.saveCase);
+	app.get('/fetchCase', fetchCase.fetchCase )
 }

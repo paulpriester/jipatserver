@@ -3,8 +3,10 @@ const mongoose = require('mongoose'),
 
 
 const caseSchema = new Schema({
-	studentName: String,
+	jobTitle: String,
 	job_id: String,
+	studentName: String,
+	studentId: String,
 	date: Date
 });
 

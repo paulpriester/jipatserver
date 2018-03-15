@@ -39,7 +39,11 @@ exports.signup = function(req, res, next) {
 			admin: false,
 			firstName: '',
 			lastName: '',
-			about: ''
+			about: '',
+			portfolio: '',
+			linkedin: '',
+			github: '',
+			resume: ''
 		});
 
 		user.save(function(err) {
@@ -52,29 +56,25 @@ exports.signup = function(req, res, next) {
 };
 
 exports.signupDetail = function(req, res, next) {
-
 	const firstName = req.body.firstName;
 	const lastName = req.body.lastName;
 	const about = req.body.about;
-	
-	// _id.toString()
-	User.findOneAndUpdate( {id:req.params.id}, {$set: {"firstName": firstName, "lastName": lastName, "about": about}},
+	const portfolio = req.body.portfolio;
+	const linkedin = req.body.linkedin;
+	const github = req.body.github;
+	const resume = req.body.resume;
+
+	User.findByIdAndUpdate( {id:req.params.id}, {$set: {"firstName": firstName, "lastName": lastName, "about": about, 
+											 "portfolio": portfolio, "linkedin": linkedin, "github": github, "resume": resume}},
 		 function(err, user) {
 			if(err){
-				res.send(err)
+				return res.send(err)
 			} else {
-				res.send(successful)
+				return res.send('successful')
 			}	
+		})
+	}
 
-	user.save(function(err) {
-			if (err) {return next(err)};
-
-		//Respond to request indicating the user was created
-		res.send(User);
-		});
-	
-})
-}
 
 
 

@@ -6,7 +6,7 @@ function stripHTML(text) {
  return text.replace(/<.*?>/gm, '');
 }
 
-var test = schedule.scheduleJob('42 15 * * *',function () {
+var test = schedule.scheduleJob('19 13 * * *',function () {
 	 axios.get(`https://jobs.github.com/positions.json?search=`)
 	.then(response => {
 		console.log(response.data)
@@ -28,12 +28,13 @@ var test = schedule.scheduleJob('42 15 * * *',function () {
 						company: i.company,
 						how_to_apply: stripHTML(i.how_to_apply),
 						created_at: i.created_at,
-						type: i.type
+						type: i.type,
+						date:  Date()
 					}).save(function(err, doc) {
 						if(err){
 							console.log(err)
 						}else{
-							console.log(doc)
+							// console.log(doc)
 					}		
 				});
 		 	}

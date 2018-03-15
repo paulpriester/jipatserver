@@ -6,7 +6,8 @@ const express = require('express'),
 	  app = express(),
 	  router = require('./router'),
 	  mongoose = require('mongoose'),
-	  cors = require('cors');
+	  cors = require('cors'),
+	  passport = require('passport')
 
 
 // DB Setup

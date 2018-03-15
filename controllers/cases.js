@@ -1,9 +1,24 @@
-const cases = require('../models/case');
-const axios = require('axios');
+const saveCase = require('../models/case');
+const Job = require('../models/jobs');
 
-exports.cases = function(req, res) {
-	cases.find({}, function(err, cases) {
-		console.log(cases)
-		res.send(cases)
+
+exports.saveCase = function(req, res) {
+	Job.findOne({_id:req.params.id}, function(err,job) {
+		console.log(job.title)
+		new saveCase({
+		jobTitle: job.title,
+		job_id: job.jobid,
+		studentName:req.user.firstName,
+		studentId: req.user._id,
+		date: Date()
+	})
+	.save(function(err, doc) {
+						if(err){
+							console.log(err)
+						}else{
+							console.log(doc)
+							return res.send('success')
+					}
+			});
 	})
 }
