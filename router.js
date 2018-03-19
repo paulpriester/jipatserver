@@ -20,7 +20,7 @@ module.exports = function(app) {
 	app.post('/signin', requireSignin, Authentication.signin);
 	app.post('/signup', Authentication.signup);
 	app.post('/invite', Invite.invite);
-	app.post('/profile',  Authentication.signupDetail);
+	app.post('/profile', requireAuth,  Authentication.signupDetail);
 	app.get('/fetchUsers', fetchStudents.fetchStudent);
 	app.get('/fetchJobs', fetchJobs.fetchJob);
 	app.post('/addjob', addJob.Jobs);

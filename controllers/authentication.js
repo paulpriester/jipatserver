@@ -64,7 +64,7 @@ exports.signupDetail = function(req, res, next) {
 	const github = req.body.github;
 	const resume = req.body.resume;
 
-	User.findByIdAndUpdate( {id:req.params.id}, {$set: {"firstName": firstName, "lastName": lastName, "about": about, 
+	User.findOneAndUpdate( {_id:req.user._id}, {$set: {"firstName": firstName, "lastName": lastName, "about": about, 
 											 "portfolio": portfolio, "linkedin": linkedin, "github": github, "resume": resume}},
 		 function(err, user) {
 			if(err){

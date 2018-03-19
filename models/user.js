@@ -15,7 +15,7 @@ const userSchema = new Schema({
 	github: String,
 	linkedin: String,
 	dateCreated: Date,
-	cases: []
+	// cases: []
 });
 
 // On save Hook, encrypt password

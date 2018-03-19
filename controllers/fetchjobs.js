@@ -5,7 +5,7 @@ exports.fetchJob = function(req, res) {
 	fetchJob.find({}, function(err, jobs) {
 		// console.log(jobs)
 		res.send(jobs)
-	}).sort({date: -1})
+	})
 }
 
-
+// .sort({date: -1})
