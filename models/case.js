@@ -5,9 +5,14 @@ const mongoose = require('mongoose'),
 const caseSchema = new Schema({
 	jobTitle: String,
 	job_id: String,
+	jobDescription: String,
 	studentName: String,
 	studentId: String,
-	date: Date
+	date: Date,
+	openCase: Boolean,
+	closeCase: Boolean,
+	placeCase: Boolean,
+	statusUpdateDate: Date
 });
 
 

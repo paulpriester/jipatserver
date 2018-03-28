@@ -9,7 +9,6 @@ const express = require('express'),
 	  cors = require('cors'),
 	  passport = require('passport')
 
-
 // DB Setup
 mongoose.connect('mongodb://localhost/auth');
 // mongoose.connect(process.env.DB_URL);

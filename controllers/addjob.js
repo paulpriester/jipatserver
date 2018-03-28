@@ -11,7 +11,9 @@ exports.Jobs = function(req, res) {
 		how_to_apply: req.body.how_to_apply,
 		created_at: req.body.created_at,
 		type: req.body.type,
-		date:  Date()
+		date:  Date(),
+		byuser: true
+
 	})
 	.save(function(err, doc) {
 						if(err){
