@@ -1,10 +1,6 @@
 const Jobs = require('../models/jobs');
 const axios = require('axios');
 
-function stripHTML(text) {
- return text.replace(/<.*?>/gm, '');
-}
-
 exports.Jobs = function(req, res) {
 	new Jobs({
 		title: req.body.title,
@@ -14,13 +10,16 @@ exports.Jobs = function(req, res) {
 		company: req.body.company,
 		how_to_apply: req.body.how_to_apply,
 		created_at: req.body.created_at,
-		type: req.body.type
+		type: req.body.type,
+		date:  Date(),
+		byuser: true
+
 	})
 	.save(function(err, doc) {
 						if(err){
 							console.log(err)
 						}else{
-							console.log(doc)
+							res.send(doc)
 					}		
 				});
 }

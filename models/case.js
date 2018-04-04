@@ -3,9 +3,16 @@ const mongoose = require('mongoose'),
 
 
 const caseSchema = new Schema({
-	studentName: String,
+	jobTitle: String,
 	job_id: String,
-	date: Date
+	jobDescription: String,
+	studentName: String,
+	studentId: String,
+	date: Date,
+	openCase: Boolean,
+	closeCase: Boolean,
+	placeCase: Boolean,
+	statusUpdateDate: Date
 });
 
 

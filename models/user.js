@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'),
 	  Schema = mongoose.Schema,
-	  bcrypt = require('bcrypt-nodejs');
+	  bcrypt = require('bcrypt-nodejs'),
+	  CaseSchema = require('./case');
 
 
 // Define our model
@@ -12,7 +13,10 @@ const userSchema = new Schema({
 	about:  String,
 	portfolio: String,
 	github: String,
-	linkedin: String
+	linkedin: String,
+	dateCreated: Date,
+	admin: {type: Boolean, default: false},
+	cases: []
 });
 
 // On save Hook, encrypt password
