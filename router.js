@@ -6,6 +6,7 @@ const fetchCase = require('./controllers/fetchcases');
 const fetchAllCases = require('./controllers/fetchallcases');
 const updateCase = require('./controllers/updatecase');
 const fetchJobs = require('./controllers/fetchjobs');
+const searchJobs = require('./controllers/searchjob');
 const deleteJob = require('./controllers/deletejob');
 const deleteCase = require('./controllers/deletecase');
 const addJob = require('./controllers/addjob');
@@ -27,6 +28,7 @@ module.exports = function(app) {
 	app.post('/profile', requireAuth,  Authentication.signupDetail);
 	app.get('/fetchUsers', fetchStudents.fetchStudent);
 	app.get('/fetchJobs', fetchJobs.fetchJob);
+	app.get('/searchJobs/:title?/:location?', searchJobs.searchJob);
 	app.post('/addjob', addJob.Jobs);
 	app.delete('/deletejob/:id', deleteJob.deleteJob);
 	app.delete('/deletecase/:id', requireAuth, deleteCase.deleteCase);

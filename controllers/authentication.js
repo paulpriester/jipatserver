@@ -50,8 +50,7 @@ exports.signup = function(req, res, next) {
 			linkedin: '',
 			github: '',
 			resume: '',
-			cases: [],
-			admin: false
+			cases: []
 		});
 
 		user.save(function(err) {

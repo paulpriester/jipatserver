@@ -1,8 +1,5 @@
 const saveCase = require('../models/case');
 const Job = require('../models/jobs');
-const moment = require('moment-timezone')
-
-
 
 exports.saveCase = function(req, res) {
 	Job.findOne({_id:req.params.id}, function(err,job) {
@@ -13,10 +10,9 @@ exports.saveCase = function(req, res) {
 		jobDescription: job.description,
 		studentName:req.user.firstName,
 		studentId: req.user._id,
+		company: job.company,
 		date: Date.now(),
-		openCase: true,
-		closeCase: false,
-		placeCase: false,
+		openCase: 'Open',
 		statusUpdateDate: Date.now()
 
 
