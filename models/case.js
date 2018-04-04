@@ -8,10 +8,9 @@ const caseSchema = new Schema({
 	jobDescription: String,
 	studentName: String,
 	studentId: String,
+	company: String,
 	date: Date,
-	openCase: Boolean,
-	closeCase: Boolean,
-	placeCase: Boolean,
+	openCase: String,
 	statusUpdateDate: Date
 });
 

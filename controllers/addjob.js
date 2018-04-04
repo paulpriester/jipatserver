@@ -1,5 +1,4 @@
 const Jobs = require('../models/jobs');
-const axios = require('axios');
 
 exports.Jobs = function(req, res) {
 	new Jobs({

@@ -1,5 +1,4 @@
 const deleteCase = require('../models/case');
-const axios = require('axios');
 
 exports.deleteCase = function(req, res) {
 	deleteCase.remove({_id:req.params.id}, function(err, Case) {
