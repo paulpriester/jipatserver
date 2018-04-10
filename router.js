@@ -4,7 +4,9 @@ const Jobs = require('./controllers/jobs');
 const Case = require('./controllers/createcase');
 const fetchCase = require('./controllers/fetchcases');
 const fetchAllCases = require('./controllers/fetchallcases');
+const shareJobs = require('./controllers/sharejobs');
 const updateCase = require('./controllers/updatecase');
+const addSkills = require('./controllers/addskills');
 const fetchJobs = require('./controllers/fetchjobs');
 const searchJobs = require('./controllers/searchjob');
 const deleteJob = require('./controllers/deletejob');
@@ -25,7 +27,9 @@ module.exports = function(app) {
 	app.post('/signup', Authentication.signup);
 	app.post('/signupadmin', Authentication.signupAdmin);
 	app.post('/invite', Invite.invite);
+	app.post('/addskills', addSkills.Skills)
 	app.post('/profile', requireAuth,  Authentication.signupDetail);
+	app.post('/sharejobs', shareJobs.shareJobs)
 	app.get('/fetchUsers', fetchStudents.fetchStudent);
 	app.get('/fetchJobs', fetchJobs.fetchJob);
 	app.get('/searchJobs/:title?/:location?', searchJobs.searchJob);

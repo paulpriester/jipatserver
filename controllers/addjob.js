@@ -11,7 +11,8 @@ exports.Jobs = function(req, res) {
 		created_at: req.body.created_at,
 		type: req.body.type,
 		date:  Date(),
-		byuser: true
+		byuser: true,
+		jobPrivate: req.body.jobPrivate
 
 	})
 	.save(function(err, doc) {
