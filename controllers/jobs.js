@@ -8,7 +8,7 @@ function stripHTML(text) {
 
 var test = schedule.scheduleJob('17 13 * * *',function () {
 
-	 axios.get(`https://jobs.github.com/positions.json?search=`)
+	 axios.get(`https://jobs.github.com/positions.json?search=&location=`)
 	.then(response => {
 		console.log(response.data)
 			var alljobs =  response.data.map(i=> {
@@ -17,7 +17,7 @@ var test = schedule.scheduleJob('17 13 * * *',function () {
 						console.log(err)
 					 }
 					if (existingJob) {
-						console.log("exist")
+						console.log("exist") 
 					}
 
 					if (!existingJob) {
