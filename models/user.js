@@ -14,6 +14,7 @@ const userSchema = new Schema({
 	portfolio: String,
 	github: String,
 	linkedin: String,
+	resume: String,
 	dateCreated: Date,
 	admin: {type: Boolean, default: false},
 	cases: []

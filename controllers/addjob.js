@@ -13,7 +13,6 @@ exports.Jobs = function(req, res) {
 		date:  Date(),
 		byuser: true,
 		jobPrivate: req.body.jobPrivate
-
 	})
 	.save(function(err, doc) {
 						if(err){

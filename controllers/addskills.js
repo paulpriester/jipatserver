@@ -2,13 +2,15 @@ const Skills = require('../models/skills');
 
 exports.Skills = function(req, res) {
 	new Skills({
-		skills: req.body.skills
+		skill: req.body.skill,
+		date: Date()
 	})
 	.save(function(err, doc) {
 						if(err){
 							console.log(err)
 						}else{
-							res.send('doc')
+							console.log(doc)
+							res.send(doc)
 					}		
 		});
 }
