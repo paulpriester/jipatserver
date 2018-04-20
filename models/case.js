@@ -17,4 +17,4 @@ const caseSchema = new Schema({
 
 const ModelClass = mongoose.model('case', caseSchema);
 
-module.exports = ModelClass; 
+module.exports = ModelClass;  
