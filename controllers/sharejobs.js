@@ -4,45 +4,30 @@ const Invitation = require("../models/email"),
 
 
 exports.shareJobs = function(req,res,next) {
-	const email = req.body.email;
-	const firstName = req.body.firstName;
-	const lastName = req.body.lastName;
-	const how_to_apply = req.body.how_to_apply
+		const email = req.body.email;
+		const name = req.body.name;
+		const id = req.params.jobid;
 
-		const invitation = new Invitation({
-			email: email,
-			firstName: firstName,
-			lastName: lastName,
-			how_to_apply: how_to_apply
-		});
+		var transporter = nodemailer.createTransport({
+				 service: 'gmail',
+				 auth: {
+				        user: 'nodemailertest507@gmail.com',
+				        pass: 'idontcare'
+				    }
+				});
 
+				const mailOptions = {
+				  from: 'nodemailertest507@gmail.com', // sender address
+				  to: email, // list of receivers
+				  subject:name, // Subject line
+				  html: `<p>Hello ${name},</p>` + '<p>Here is the Link to the job</p>' + `<a href=http://localhost:8080/jobdetail?id=${id}> Link</a>` // plain text body
+				};
 
-		invitation.save(function(err) {
-			if (err) {return next(err);}
-
-			var transporter = nodemailer.createTransport({
-			 service: 'gmail',
-			 auth: {
-			        user: 'nodemailertest507@gmail.com',
-			        pass: 'idontcare'
-			    }
-			});
-
-			const mailOptions = {
-			  from: 'nodemailertest507@gmail.com', // sender address
-			  to: invitation.email, // list of receivers
-			  subject: invitation.firstName, // Subject line
-			  html: '<p>Hello </p>'+ invitation.firstName + invitation.lastName + '<p>Here is the Link to the job</p>' + "<a href='http://localhost:3000/sharejobs' >here</a>" // plain text body
-			};
-
-			transporter.sendMail(mailOptions, function (err, info) {
-			   if(err)
-			     console.log(err)
-			   else
-			     console.log(info);
-			});
-
-			//Respond to request indicating the user was created
-				res.json(invitation);
-	});
+				transporter.sendMail(mailOptions, function (err, info) {
+				   if(err)
+				     console.log(err)
+				   else
+				     console.log(info);
+				});	
+				res.json(transporter)
 }

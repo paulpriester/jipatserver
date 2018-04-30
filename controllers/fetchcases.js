@@ -6,4 +6,3 @@ exports.fetchCase = function(req, res) {
 		res.send(cases)
 	})
 }
-

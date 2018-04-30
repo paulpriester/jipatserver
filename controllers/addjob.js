@@ -12,13 +12,14 @@ exports.Jobs = function(req, res) {
 		type: req.body.type,
 		date:  Date(),
 		byuser: true,
-		jobPrivate: req.body.jobPrivate
-
+		jobPrivate: req.body.jobPrivate,
+		job_applied: req.body.job_applied
 	})
 	.save(function(err, doc) {
 						if(err){
 							console.log(err)
 						}else{
+							console.log(doc)
 							res.send(doc)
 					}		
 				});

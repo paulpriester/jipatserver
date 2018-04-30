@@ -1,11 +1,11 @@
 const mongoose = require('mongoose'),
 	  Schema = mongoose.Schema;
 
-var skillSchema = new Schema({skills: String});
 
 
-const skillTracker = new Schema({
-	skills: [skillSchema]
+const skillSchema = new Schema({
+	skill: {type:String},
+	date: Date
 });
 
 

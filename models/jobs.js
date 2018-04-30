@@ -13,7 +13,8 @@ const jobSchema = new Schema({
 	type: String,
 	byuser: {type: Boolean, default: false},
 	date: Date,
-	jobPrivate: {type: Boolean, default: false}
+	jobPrivate: {type: Boolean, default: false},
+	job_applied: {type: Boolean, default: false}
 });
 
 
