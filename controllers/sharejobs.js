@@ -2,7 +2,6 @@ const Invitation = require("../models/email"),
 	  jobs = require('../models/jobs'),
 	  nodemailer = require('nodemailer')
 
-
 exports.shareJobs = function(req,res,next) {
 	const email = req.body.email;
 	const firstName = req.body.firstName;
@@ -15,7 +14,6 @@ exports.shareJobs = function(req,res,next) {
 			lastName: lastName,
 			how_to_apply: how_to_apply
 		});
-
 
 		invitation.save(function(err) {
 			if (err) {return next(err);}

@@ -13,6 +13,7 @@ const deleteJob = require('./controllers/deletejob');
 const deleteCase = require('./controllers/deletecase');
 const addJob = require('./controllers/addjob');
 const fetchStudents = require('./controllers/users');
+const forgotPass = require('./controllers/forgotPassword')
 const passportService = require('./services/passport');
 const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
@@ -40,4 +41,5 @@ module.exports = function(app) {
 	app.get('/fetchCase', requireAuth, fetchCase.fetchCase);
 	app.get('/fetchallcases', fetchAllCases.fetchCase);
 	app.post('/update/:id', updateCase.updatecase);
+	app.get('/forgot', forgot.forgotPassword)
 }
