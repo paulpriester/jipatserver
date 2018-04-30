@@ -1,7 +1,10 @@
 const mongoose = require('mongoose'),
+	  CaseSchema = require('./case'),
 	  Schema = mongoose.Schema,
-	  bcrypt = require('bcrypt-nodejs'),
-	  CaseSchema = require('./case');
+	  bcrypt = require('bcrypt-nodejs');
+
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
 
 
 // Define our model
@@ -15,10 +18,16 @@ const userSchema = new Schema({
 	github: String,
 	linkedin: String,
 	resume: String,
+	careergoals: String,
 	dateCreated: Date,
-	admin: {type: Boolean, default: false},
-	cases: []
+	admin: {type: Boolean, default: false}
+	// cases: [{
+	// 	type: Schema.Types.ObjectId,
+	// 	ref: 'case'
+	// }]
 });
+
+
 
 // On save Hook, encrypt password
 // Before saving a model, run this function
@@ -50,7 +59,6 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
 }
 
 // Create the model class
-const ModelClass = mongoose.model('user', userSchema);
+module.exports = mongoose.model('user', userSchema);
 
 // Export the model
-module.exports = ModelClass; 

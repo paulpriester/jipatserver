@@ -6,6 +6,8 @@ const caseSchema = new Schema({
 	jobTitle: String,
 	job_id: String,
 	jobDescription: String,
+	job_location: String,
+	job_applied: Boolean,
 	studentName: String,
 	studentId: String,
 	company: String,
