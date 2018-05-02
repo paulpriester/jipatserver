@@ -50,7 +50,7 @@ exports.signup = function(req, res, next) {
 			linkedin: '',
 			github: '',
 			resume: '',
-			careergoals: ''
+			cases: []
 		});
 
 		user.save(function(err) {
@@ -107,10 +107,9 @@ exports.signupDetail = function(req, res, next) {
 	const linkedin = req.body.linkedin;
 	const github = req.body.github;
 	const resume = req.body.resume;
-	const careergoals = req.body.careergoals;
 
 	User.findOneAndUpdate( {_id:req.user._id}, {$set: {"firstName": firstName, "lastName": lastName, "about": about, 
-											 "portfolio": portfolio, "linkedin": linkedin, "github": github, "resume": resume, "careergoals": careergoals}},
+											 "portfolio": portfolio, "linkedin": linkedin, "github": github, "resume": resume}},
 		 function(err, user) {
 			if(err){
 				return res.send(err)

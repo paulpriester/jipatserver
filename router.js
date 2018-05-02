@@ -4,13 +4,13 @@ const Jobs = require('./controllers/jobs');
 const Case = require('./controllers/createcase');
 const fetchCase = require('./controllers/fetchcases');
 const fetchAllCases = require('./controllers/fetchallcases');
+const fetchUsers = require('./controllers/fetchUsers');
 const fetchSkills = require('./controllers/fetchskills');
 const fetchProfile = require('./controllers/fetchprofile');
 const shareJobs = require('./controllers/sharejobs');
 const updateCase = require('./controllers/updatecase');
 const addSkills = require('./controllers/addskills');
 const fetchJobs = require('./controllers/fetchjobs');
-const fetchCaseLength = require('./controllers/caselength')
 const fetchOneJob = require('./controllers/fetchonejob');
 const searchJobs = require('./controllers/searchjob');
 const deleteJob = require('./controllers/deletejob');
@@ -24,9 +24,9 @@ const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false});
 
 module.exports = function(app) {
-	// app.get('/', requireAuth, function(req, res) {
-	// 	res.send({ message: 'Super secret code is 1231234' });
-	// });
+	app.get('/', requireAuth, function(req, res) {
+		res.send({ message: 'Super secret code is 1231234' });
+	});
 	
 	app.post('/signin', requireSignin, Authentication.signin);
 	app.post('/signup', Authentication.signup);
@@ -48,6 +48,7 @@ module.exports = function(app) {
 	app.post('/addcase/:id', requireAuth, Case.saveCase);
 	app.get('/fetchCase', requireAuth, fetchCase.fetchCase);
 	app.get('/fetchallcases', fetchAllCases.fetchCase);
+	app.get('/fetchUsers/:search?', fetchUsers.fetchUser);
 	app.get('/fetchskills', fetchSkills.fetchSkill)
 	app.post('/update/:id', updateCase.updatecase);
 }

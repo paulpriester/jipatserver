@@ -7,7 +7,8 @@ function stripHTML(text) {
  return text.replace(/<.*?>/gm, '');
 }
 
-var test = schedule.scheduleJob('14 14 * * *',function () {
+
+var test = schedule.scheduleJob('08 15 * * *',function () {
 	 axios.get(`https://jobs.github.com/positions.json?search=`)
 	.then(response => {
 		console.log(response.data)
@@ -17,7 +18,7 @@ var test = schedule.scheduleJob('14 14 * * *',function () {
 						console.log(err)
 					 }
 					if (existingJob) {
-						console.log("exist")
+						console.log("exist") 
 					}
 
 					if (!existingJob) {
