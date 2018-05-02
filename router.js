@@ -34,15 +34,15 @@ module.exports = function(app) {
 	app.post('/invite', Invite.invite);
 	app.post('/addskills', addSkills.Skills)
 	app.post('/profile', requireAuth,  Authentication.signupDetail);
-	app.get('/fetchprofile', requireAuth, fetchProfile.fetchProfile )
+	app.get('/fetchprofile/:id?', requireAuth, fetchProfile.fetchProfile )
 	app.post('/sharejobs/:jobid', shareJobs.shareJobs)
 	app.get('/fetchUsers', fetchStudents.fetchStudent);
-	app.get('/fetchcaselength', requireAuth, fetchCaseLength.fetchcase)
+	app.get('/fetchcaselength', requireAuth, fetchCaseLength.caselength)
 	app.get('/fetchJobs', fetchJobs.fetchJob);
 	app.get('/fetchonejob/:_id', fetchOneJob.fetchOneJob)
 	app.get('/searchJobs/:title?/:location?', searchJobs.searchJob);
 	app.post('/addjob', addJob.Jobs);
-	app.delete('/deletejob/:id', deleteJob.deleteJob);
+	app.delete('/deletejob/', deleteJob.deleteJob);
 	app.delete('/deletecase/:id', requireAuth, deleteCase.deleteCase);
 	app.delete('/deleteskill/:id', deleteSkill.deleteSkill);
 	app.post('/addcase/:id', requireAuth, Case.saveCase);

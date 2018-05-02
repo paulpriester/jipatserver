@@ -7,3 +7,5 @@ exports.deleteJob = function(req, res) {
 		})
 	})
 }
+
+// {date:{$lt: new Date(2018, 4, )}

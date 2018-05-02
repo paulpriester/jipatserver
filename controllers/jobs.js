@@ -1,12 +1,13 @@
 const saveJob = require('../models/jobs');
 const axios = require('axios');
 const schedule = require('node-schedule');
+const moment = require('moment');
 
 function stripHTML(text) {
  return text.replace(/<.*?>/gm, '');
 }
 
-var test = schedule.scheduleJob('07 14 * * *',function () {
+var test = schedule.scheduleJob('14 14 * * *',function () {
 	 axios.get(`https://jobs.github.com/positions.json?search=`)
 	.then(response => {
 		console.log(response.data)
@@ -30,6 +31,7 @@ var test = schedule.scheduleJob('07 14 * * *',function () {
 						created_at: i.created_at,
 						type: i.type,
 						date:  Date(),
+						expireAt: moment().add(120, 'seconds'),
 						jobPrivate: false,
 						job_applied: false
 					}).save(function(err, doc) {

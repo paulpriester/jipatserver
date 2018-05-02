@@ -1,5 +1,6 @@
 const saveCase = require('../models/case');
 const Job = require('../models/jobs');
+const moment = require('moment');
 
 exports.saveCase = function(req, res) {
 	Job.findOne({_id:req.params.id}, function(err,job) {
@@ -22,7 +23,13 @@ exports.saveCase = function(req, res) {
 							console.log(err)
 						}else{
 							console.log(doc)
-							return res.send('success')
+							job.update({$unset: {expireAt: 1}}, function(){
+								if(err){
+									console.log(err)
+								}else{
+									return res.send('success')
+								}
+							})
 					}
 			});
 	})

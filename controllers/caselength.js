@@ -1,8 +1,8 @@
-const fetchcase = require('../models/case');
+const caselength = require('../models/case');
 
-exports.fetchcase = function(req, res) {
-	fetchcase.find({studentId: req.user._id}, function(err, cases) {
+exports.caselength = function(req, res) {
+	caselength.find({studentId: req.user._id}, function(err, cases) {
 		console.log(cases.length)
-		res.send(cases)
+		res.json({length: cases.length})
 	})
 }
