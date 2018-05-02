@@ -7,6 +7,7 @@ const fetchAllCases = require('./controllers/fetchallcases');
 const fetchUsers = require('./controllers/fetchUsers');
 const fetchSkills = require('./controllers/fetchskills');
 const fetchProfile = require('./controllers/fetchprofile');
+const fetchCaseLength = require('./controllers/caselength');
 const shareJobs = require('./controllers/sharejobs');
 const updateCase = require('./controllers/updatecase');
 const addSkills = require('./controllers/addskills');
