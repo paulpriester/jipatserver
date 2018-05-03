@@ -7,6 +7,10 @@ const fetchAllCases = require('./controllers/fetchallcases');
 const fetchUsers = require('./controllers/fetchUsers');
 const fetchSkills = require('./controllers/fetchskills');
 const fetchProfile = require('./controllers/fetchprofile');
+<<<<<<< HEAD
+=======
+const fetchCaseLength = require('./controllers/caselength');
+>>>>>>> c85019c3fc2120c95c7238b106c16ea81e907594
 const shareJobs = require('./controllers/sharejobs');
 const updateCase = require('./controllers/updatecase');
 const addSkills = require('./controllers/addskills');
@@ -15,6 +19,7 @@ const fetchOneJob = require('./controllers/fetchonejob');
 const searchJobs = require('./controllers/searchjob');
 const deleteJob = require('./controllers/deletejob');
 const deleteCase = require('./controllers/deletecase');
+const deleteSkill = require('./controllers/deleteskill');
 const addJob = require('./controllers/addjob');
 const fetchStudents = require('./controllers/users');
 const passportService = require('./services/passport');
@@ -36,15 +41,17 @@ module.exports = function(app) {
 	app.post('/invite', Invite.invite);
 	app.post('/addskills', addSkills.Skills)
 	app.post('/profile', requireAuth,  Authentication.signupDetail);
-	app.get('/fetchprofile', requireAuth, fetchProfile.fetchProfile )
+	app.get('/fetchprofile/:id?', requireAuth, fetchProfile.fetchProfile )
 	app.post('/sharejobs/:jobid', shareJobs.shareJobs)
 	app.get('/fetchUsers', fetchStudents.fetchStudent);
+	app.get('/fetchcaselength', requireAuth, fetchCaseLength.caselength)
 	app.get('/fetchJobs', fetchJobs.fetchJob);
 	app.get('/fetchonejob/:_id', fetchOneJob.fetchOneJob)
 	app.get('/searchJobs/:title?/:location?', searchJobs.searchJob);
 	app.post('/addjob', addJob.Jobs);
-	app.delete('/deletejob/:id', deleteJob.deleteJob);
+	app.delete('/deletejob/', deleteJob.deleteJob);
 	app.delete('/deletecase/:id', requireAuth, deleteCase.deleteCase);
+	app.delete('/deleteskill/:id', deleteSkill.deleteSkill);
 	app.post('/addcase/:id', requireAuth, Case.saveCase);
 	app.get('/fetchCase', requireAuth, fetchCase.fetchCase);
 	app.get('/fetchallcases', fetchAllCases.fetchCase);
