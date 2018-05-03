@@ -43,7 +43,7 @@ module.exports = function(app) {
 	app.get('/fetchonejob/:_id', fetchOneJob.fetchOneJob)
 	app.get('/searchJobs/:title?/:location?', searchJobs.searchJob);
 	app.post('/addjob', addJob.Jobs);
-	app.delete('/deletejob/', deleteJob.deleteJob);
+	app.delete('/deletejob/:id', deleteJob.deleteJob);
 	app.delete('/deletecase/:id', requireAuth, deleteCase.deleteCase);
 	app.delete('/deleteskill/:id', deleteSkill.deleteSkill);
 	app.post('/addcase/:id', requireAuth, Case.saveCase);

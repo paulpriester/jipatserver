@@ -23,13 +23,14 @@ exports.saveCase = function(req, res) {
 							console.log(err)
 						}else{
 							console.log(doc)
-							job.update({$unset: {expireAt: 1}}, function(){
+							job.update({expireAt:(moment().add(100, 'years'))}, function(){
 								if(err){
 									console.log(err)
 								}else{
 									return res.send('success')
 								}
 							})
+							job.save()
 					}
 			});
 	})

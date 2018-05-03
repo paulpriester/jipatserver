@@ -1,6 +1,3 @@
-// requires process.env
-require('dotenv').config()
-
 //Main starting point of the application
 const express = require('express'),
 	  http = require('http'),
@@ -13,9 +10,8 @@ const express = require('express'),
 	  passport = require('passport')
 
 // DB Setup
-// mongoose.connect(process.env.DB, () => {
-// 	console.log("Server is running")
-// });
+mongoose.connect('mongodb://localhost/auth');
+// mongoose.connect(process.env.DB_URL);
 
 
 //App Setup
@@ -29,4 +25,5 @@ const port = process.env.PORT || 3090;
 const server = http.createServer(app);
 server.listen(port);
 console.log('server is running', port);
+
 
