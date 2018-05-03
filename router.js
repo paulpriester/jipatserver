@@ -4,12 +4,9 @@ const Jobs = require('./controllers/jobs');
 const Case = require('./controllers/createcase');
 const fetchCase = require('./controllers/fetchcases');
 const fetchAllCases = require('./controllers/fetchallcases');
-<<<<<<< HEAD
 const fetchUsers = require('./controllers/fetchUsers');
-=======
 const fetchSkills = require('./controllers/fetchskills');
 const fetchProfile = require('./controllers/fetchprofile');
->>>>>>> 8132c59615c45ff8932c51de1e0901a8746ee502
 const shareJobs = require('./controllers/sharejobs');
 const updateCase = require('./controllers/updatecase');
 const addSkills = require('./controllers/addskills');
@@ -33,6 +30,9 @@ module.exports = function(app) {
 	app.post('/signin', requireSignin, Authentication.signin);
 	app.post('/signup', Authentication.signup);
 	app.post('/signupadmin', Authentication.signupAdmin);
+	app.post('/forgot', Authentication.forgotPassword);
+	app.get('/reset/:tokenId', Authentication.passwordResetMount);
+	app.post('/reset/:tokenId', Authentication.passwordReset);
 	app.post('/invite', Invite.invite);
 	app.post('/addskills', addSkills.Skills)
 	app.post('/profile', requireAuth,  Authentication.signupDetail);
@@ -48,10 +48,7 @@ module.exports = function(app) {
 	app.post('/addcase/:id', requireAuth, Case.saveCase);
 	app.get('/fetchCase', requireAuth, fetchCase.fetchCase);
 	app.get('/fetchallcases', fetchAllCases.fetchCase);
-<<<<<<< HEAD
 	app.get('/fetchUsers/:search?', fetchUsers.fetchUser);
-=======
 	app.get('/fetchskills', fetchSkills.fetchSkill)
->>>>>>> 8132c59615c45ff8932c51de1e0901a8746ee502
 	app.post('/update/:id', updateCase.updatecase);
 }

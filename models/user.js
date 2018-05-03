@@ -16,6 +16,8 @@ const userSchema = new Schema({
 	linkedin: String,
 	resume: String,
 	dateCreated: Date,
+	resetPasswordToken: String,
+	resetPasswordExpires: Date,
 	admin: {type: Boolean, default: false},
 	cases: []
 });

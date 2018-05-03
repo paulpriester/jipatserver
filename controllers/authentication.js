@@ -1,6 +1,9 @@
 const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
-	  config = require('../config')
+	  config = require('../config'),
+	  async = require('async'),
+	  crypto = require("crypto"),
+	  nodemailer = require('nodemailer')
 
 
  function tokenForUser(user) {
@@ -98,6 +101,117 @@ exports.signupAdmin = function(req, res, next) {
 		});
 	});
 };
+
+exports.forgotPassword = function(req, res, next) {
+	async.waterfall([
+		function(done) {
+			crypto.randomBytes(20, function(err, buf) {
+				var token = buf.toString('hex');
+				done(err, token);
+			})
+		},
+		function(token, done) {
+			User.findOne({ email: req.body.email}, function(err, user) {
+				if(!user) {
+					// req.flash('error', 'No account with that email exists.');
+					return res.send('User Does not exist')
+				}
+
+				user.resetPasswordToken = token;
+				user.resetPasswordExpires = Date.now() + 36000000 //1 hour
+
+				user.save(function(err) {
+					done(err, token, user);
+				})
+			})
+		},
+		function(token, user, done) {
+			const smtpTransport = nodemailer.createTransport({
+				service: 'Gmail',
+				auth: {
+					user: 'nodemailertest507@gmail.com',
+					pass: 'idontcare'
+				}
+			})
+			const mailOptions = {
+				to: user.email,
+				from: 'nodemailertest507@gmail.com',
+				subject: 'Job Board Password Reset',
+				text: 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
+          			  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          			  'http://localhost:8080/reset/' + token + '\n\n' +
+          			  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+			}
+			smtpTransport.sendMail(mailOptions, function(err) {
+				console.log("mail sent");
+				res.send('success')
+				done(err, 'done');
+			})
+		}
+	], function(err) {
+		if(err) {
+			return next(err);
+			res.send('Error here')
+		}
+	})
+}
+
+exports.passwordResetMount = function (req, res) {
+  User.findOne({ resetPasswordToken: req.params.tokenId, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+      return res.send('Password reset token is invalid or has expired.');
+    }
+  });
+}
+
+exports.passwordReset = function (req, res) {
+	console.log(req.body)
+	console.log(req.params)
+  async.waterfall([
+    function(done) {
+      User.findOne({ resetPasswordToken: req.params.tokenId, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+      	console.log(user)
+        if (!user) {
+          return res.send('Password reset token is invalid or has expired.');
+        }
+        if(req.body.password === req.body.confirmPassword) {
+        	
+          user.password = req.body.password 
+          user.resetPasswordToken = undefined;
+          user.resetPasswordExpires = undefined;
+
+          user.save(function(err) {
+              res.send("success")
+          })
+        } else {
+            return res.send('Passwords do not match.');
+        }
+      });
+    },
+    function(user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'Gmail', 
+        auth: {
+          user: 'nodemailertest507@gmail.com',
+          pass: 'idontcare'
+        }
+      });
+      var mailOptions = {
+        to: user.email,
+        from: 'nodemailertest507@gmail.com',
+        subject: 'Your password has been changed',
+        text: 'Hello,\n\n' +
+          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        res.send('Success! Your password has been changed.');
+        done(err);
+      });
+    }
+  ], function(err) {
+    	res.send('error');
+  });
+}
 
 exports.signupDetail = function(req, res, next) {
 	const firstName = req.body.firstName;
