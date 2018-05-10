@@ -9,9 +9,10 @@ const jobSchema = new Schema({
 	description: {type: String},
 	company: String,
 	how_to_apply: String,
-	created_at: {String},
+	created_at: String,
 	type: String,
 	byuser: {type: Boolean, default: false},
+	author: String,
 	expireAt: {type: Date, expires:0},
 	date: {type:Date},
 	jobPrivate: {type: Boolean, default: false}

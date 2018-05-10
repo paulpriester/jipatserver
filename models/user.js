@@ -18,7 +18,11 @@ const userSchema = new Schema({
 	resume: String,
 	careergoals: String,
 	dateCreated: Date,
-	admin: {type: Boolean, default: false}
+	admin: {type: Boolean, default: false},
+	resetPasswordToken: String,
+	resetPasswordExpires: Date,
+	admin: {type: Boolean, default: false},
+	skills: {type: []}
 });
 
 

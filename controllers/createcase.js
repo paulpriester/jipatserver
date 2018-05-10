@@ -4,7 +4,6 @@ const moment = require('moment');
 
 exports.saveCase = function(req, res) {
 	Job.findOne({_id:req.params.id}, function(err,job) {
-		// console.log(job.title)
 		new saveCase({
 		jobTitle: job.title,
 		job_id: job.jobid,
@@ -15,8 +14,6 @@ exports.saveCase = function(req, res) {
 		date: Date.now(),
 		openCase: 'Open',
 		statusUpdateDate: Date.now()
-
-
 	})
 	.save(function(err, doc) {
 						if(err){

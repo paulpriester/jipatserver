@@ -6,8 +6,8 @@ const Invitation = require("../models/email"),
 exports.shareJobs = function(req,res,next) {
 		const email = req.body.email;
 		const name = req.body.name;
+		const msg = req.body.msg;
 		const id = req.params.jobid;
-
 		var transporter = nodemailer.createTransport({
 				 service: 'gmail',
 				 auth: {
@@ -20,7 +20,7 @@ exports.shareJobs = function(req,res,next) {
 				  from: 'nodemailertest507@gmail.com', // sender address
 				  to: email, // list of receivers
 				  subject:name, // Subject line
-				  html: `<p>Hello ${name},</p>` + '<p>Here is the Link to the job</p>' + `<a href=http://localhost:8080/jobdetail?id=${id}> Link</a>` // plain text body
+				  html: `<p>Hello ${name},</p>` + `<p>${msg}</p>` + `<a href=http://localhost:8080/jobdetail?id=${id}> Link</a>` // plain text body
 				};
 
 				transporter.sendMail(mailOptions, function (err, info) {

@@ -8,7 +8,7 @@ function stripHTML(text) {
 }
 
 
-var test = schedule.scheduleJob('55 11 * * *',function () {
+var test = schedule.scheduleJob(' 18 * * *',function () {
 	 axios.get(`https://jobs.github.com/positions.json?search=`)
 	.then(response => {
 		console.log(response.data)
@@ -31,7 +31,7 @@ var test = schedule.scheduleJob('55 11 * * *',function () {
 						created_at: i.created_at,
 						type: i.type,
 						date:  Date(),
-						expireAt: new Date(moment().add(7, 'days')),
+						expireAt: new Date(moment().add(14, 'days')),
 						jobPrivate: false
 					}).save(function(err, doc) {
 						if(err){
