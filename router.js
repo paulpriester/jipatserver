@@ -17,6 +17,7 @@ const passportService = require('./services/passport');
 const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false});
+const exportCSV = require('./controllers/exportCSV')
 
 module.exports = function(app) {
 	app.get('/', requireAuth, function(req, res) {
@@ -40,4 +41,5 @@ module.exports = function(app) {
 	app.get('/fetchCase', requireAuth, fetchCase.fetchCase);
 	app.get('/fetchallcases', fetchAllCases.fetchCase);
 	app.post('/update/:id', updateCase.updatecase);
+	app.get('/exporttocsv', exportCSV.exportCSV)
 }
