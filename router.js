@@ -1,16 +1,14 @@
 const Authentication = require('./controllers/authentication');
 const Invite = require('./controllers/invite')
 const Jobs = require('./controllers/jobs');
+const JobsNY = require('./controllers/jobs-ny');
 const Case = require('./controllers/createcase');
 const fetchCase = require('./controllers/fetchcases');
 const fetchAllCases = require('./controllers/fetchallcases');
 const fetchUsers = require('./controllers/fetchUsers');
 const fetchSkills = require('./controllers/fetchskills');
 const fetchProfile = require('./controllers/fetchprofile');
-<<<<<<< HEAD
-=======
 const fetchCaseLength = require('./controllers/caselength');
->>>>>>> c85019c3fc2120c95c7238b106c16ea81e907594
 const shareJobs = require('./controllers/sharejobs');
 const updateCase = require('./controllers/updatecase');
 const addSkills = require('./controllers/addskills');

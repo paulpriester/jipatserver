@@ -165,8 +165,6 @@ exports.passwordResetMount = function (req, res) {
 }
 
 exports.passwordReset = function (req, res) {
-	console.log(req.body)
-	console.log(req.params)
   async.waterfall([
     function(done) {
       User.findOne({ resetPasswordToken: req.params.tokenId, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -175,7 +173,7 @@ exports.passwordReset = function (req, res) {
           return res.send('Password reset token is invalid or has expired.');
         }
         if(req.body.password === req.body.confirmPassword) {
-        	
+
           user.password = req.body.password 
           user.resetPasswordToken = undefined;
           user.resetPasswordExpires = undefined;
@@ -189,6 +187,7 @@ exports.passwordReset = function (req, res) {
       });
     },
     function(user, done) {
+    	console.log()
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {

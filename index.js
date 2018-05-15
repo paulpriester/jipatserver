@@ -13,9 +13,9 @@ const express = require('express'),
 	  passport = require('passport')
 
 // DB Setup
-// mongoose.connect(process.env.DB, () => {
-// 	console.log("Server is running")
-// });
+mongoose.connect(process.env.DB, () => {
+	console.log("Connected to Job Board Database")
+});
 
 
 //App Setup
