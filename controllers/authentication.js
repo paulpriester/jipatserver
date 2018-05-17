@@ -1,6 +1,5 @@
 const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
-	  config = require('../config'),
 	  async = require('async'),
 	  crypto = require("crypto"),
 	  nodemailer = require('nodemailer')
@@ -8,7 +7,7 @@ const User = require('../models/user'),
 
  function tokenForUser(user) {
 	  	const timestamp = new Date().getTime();
-	  	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+	  	return jwt.encode({ sub: user.id, iat: timestamp }, process.env.secret);
 	  }
 
 exports.signin = function(req, res, next) {
