@@ -1,5 +1,5 @@
 // requires process.env
-require('dotenv').config()
+// require('dotenv').config()
 
 //Main starting point of the application
 const express = require('express'),
