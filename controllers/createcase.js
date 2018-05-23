@@ -4,7 +4,6 @@ const moment = require('moment');
 
 exports.saveCase = function(req, res) {
 	Job.findOne({_id:req.params.id}, function(err,job) {
-		// console.log(job.title)
 		new saveCase({
 		jobTitle: job.title,
 		job_id: job.jobid,
@@ -15,21 +14,20 @@ exports.saveCase = function(req, res) {
 		date: Date.now(),
 		openCase: 'Open',
 		statusUpdateDate: Date.now()
-
-
 	})
 	.save(function(err, doc) {
 						if(err){
 							console.log(err)
 						}else{
 							console.log(doc)
-							job.update({$unset: {expireAt: 1}}, function(){
+							job.update({expireAt:(moment().add(100, 'years'))}, function(){
 								if(err){
 									console.log(err)
 								}else{
 									return res.send('success')
 								}
 							})
+							job.save()
 					}
 			});
 	})

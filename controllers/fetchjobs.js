@@ -5,5 +5,3 @@ exports.fetchJob = function(req, res) {
 		res.send(jobs)
 	})
 }
-
-// .sort({date: -1})

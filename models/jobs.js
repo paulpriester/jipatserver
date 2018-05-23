@@ -9,18 +9,16 @@ const jobSchema = new Schema({
 	description: {type: String},
 	company: String,
 	how_to_apply: String,
-	created_at: {String},
+	created_at: String,
 	type: String,
 	email: String,
 	byuser: {type: Boolean, default: false},
+	author: String,
+	expireAt: {type: Date, expires:0},
 	date: {type:Date},
-	expireAt: {type: Date, default: undefined},
-	jobPrivate: {type: Boolean, default: false},
-	job_applied: {type: Boolean, default: false}
-
+	jobPrivate: {type: Boolean, default: false}
 });
 
-// jobSchema.index({'expireAt': 1}, {expireAfterSeconds: 0})
 const ModelClass = mongoose.model('jobs', jobSchema);
 
 module.exports = ModelClass;

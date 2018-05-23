@@ -11,6 +11,7 @@ exports.Jobs = function(req, res) {
 		created_at: req.body.created_at,
 		type: req.body.type,
 		email: req.body.email,
+		author: req.user.firstName,
 		date:  Date(),
 		byuser: true,
 		jobPrivate: req.body.jobPrivate
@@ -19,6 +20,7 @@ exports.Jobs = function(req, res) {
 						if(err){
 							console.log(err)
 						}else{
+							console.log(doc)
 							res.send(doc)
 					}		
 				});
