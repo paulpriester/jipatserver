@@ -10,6 +10,7 @@ exports.Jobs = function(req, res) {
 		how_to_apply: req.body.how_to_apply,
 		created_at: req.body.created_at,
 		type: req.body.type,
+		email: req.body.email,
 		date:  Date(),
 		byuser: true,
 		jobPrivate: req.body.jobPrivate

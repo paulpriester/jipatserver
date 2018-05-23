@@ -2,12 +2,12 @@ const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
 	  async = require('async'),
 	  crypto = require("crypto"),
-	  nodemailer = require('nodemailer')
-
+	  nodemailer = require('nodemailer'),
+	  config = require('../config');
 
  function tokenForUser(user) {
 	  	const timestamp = new Date().getTime();
-	  	return jwt.encode({ sub: user.id, iat: timestamp }, process.env.secret);
+	  	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 	  }
 
 exports.signin = function(req, res, next) {
@@ -112,7 +112,6 @@ exports.forgotPassword = function(req, res, next) {
 		function(token, done) {
 			User.findOne({ email: req.body.email}, function(err, user) {
 				if(!user) {
-					// req.flash('error', 'No account with that email exists.');
 					return res.send('User Does not exist')
 				}
 
