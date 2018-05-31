@@ -11,7 +11,7 @@ const express = require('express'),
 	  passport = require('passport')
 
 // DB Setup
-mongoose.connect(process.env.DB, () => {
+mongoose.connect('mongodb://localhost/auth', () => {
 	console.log("Connected to Job Board Database")
 });
 
@@ -27,4 +27,4 @@ const server = http.createServer(app);
 server.listen(port);
 console.log('server is running', port);
 
-
+// process.env.DB

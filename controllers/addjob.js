@@ -11,7 +11,6 @@ exports.Jobs = function(req, res) {
 		how_to_apply: req.body.how_to_apply,
 		created_at: req.body.created_at,
 		type: req.body.type,
-		email: req.body.email,
 		author: req.user.firstName,
 		date:  Date.now(),
 		byuser: true,
@@ -27,4 +26,4 @@ exports.Jobs = function(req, res) {
 				});
 }
 
-// moment(Date.now().format('MMMM Do YYYY'))
+// 
