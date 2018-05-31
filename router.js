@@ -1,6 +1,7 @@
 const Authentication = require('./controllers/authentication');
 const Invite = require('./controllers/invite')
 const Jobs = require('./controllers/jobs');
+const JobsNY = require('./controllers/jobs-ny');
 const Case = require('./controllers/createcase');
 const fetchCase = require('./controllers/fetchcases');
 const fetchAllCases = require('./controllers/fetchallcases');

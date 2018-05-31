@@ -11,6 +11,7 @@ const jobSchema = new Schema({
 	how_to_apply: String,
 	created_at: String,
 	type: String,
+	email: String,
 	byuser: {type: Boolean, default: false},
 	author: {type:String, default: 'By API'},
 	expireAt: {type: Date, expires:0},

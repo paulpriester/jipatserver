@@ -1,10 +1,9 @@
 const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
-	  config = require('../config'),
 	  async = require('async'),
 	  crypto = require("crypto"),
-	  nodemailer = require('nodemailer')
-
+	  nodemailer = require('nodemailer'),
+	  config = require('../config');
 
  function tokenForUser(user) {
 	  	const timestamp = new Date().getTime();
@@ -113,7 +112,6 @@ exports.forgotPassword = function(req, res, next) {
 		function(token, done) {
 			User.findOne({ email: req.body.email}, function(err, user) {
 				if(!user) {
-					// req.flash('error', 'No account with that email exists.');
 					return res.send('User Does not exist')
 				}
 
@@ -165,8 +163,6 @@ exports.passwordResetMount = function (req, res) {
 }
 
 exports.passwordReset = function (req, res) {
-	console.log(req.body)
-	console.log(req.params)
   async.waterfall([
     function(done) {
       User.findOne({ resetPasswordToken: req.params.tokenId, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -175,7 +171,7 @@ exports.passwordReset = function (req, res) {
           return res.send('Password reset token is invalid or has expired.');
         }
         if(req.body.password === req.body.confirmPassword) {
-        	
+
           user.password = req.body.password 
           user.resetPasswordToken = undefined;
           user.resetPasswordExpires = undefined;
@@ -189,6 +185,7 @@ exports.passwordReset = function (req, res) {
       });
     },
     function(user, done) {
+    	console.log()
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {

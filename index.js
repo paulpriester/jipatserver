@@ -1,3 +1,4 @@
+require('dotenv').config()
 //Main starting point of the application
 const express = require('express'),
 	  http = require('http'),
@@ -10,9 +11,9 @@ const express = require('express'),
 	  passport = require('passport')
 
 // DB Setup
-mongoose.connect('mongodb://localhost/auth');
-// mongoose.connect(process.env.DB_URL);
-
+mongoose.connect(process.env.DB, () => {
+	console.log("Connected to Job Board Database")
+});
 
 //App Setup
 app.use(morgan('combined'));

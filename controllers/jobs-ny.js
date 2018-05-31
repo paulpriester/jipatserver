@@ -7,8 +7,9 @@ function stripHTML(text) {
  return text.replace(/<.*?>/gm, '');
 }
 
+
 var test = schedule.scheduleJob('23 14 * * *',function () {
-	 axios.get(`https://jobs.github.com/positions.json?search=&location=united states`)
+	 axios.get(`https://jobs.github.com/positions.json?search=&location=newyork`)
 	.then(response => {
 		console.log(response.data)
 			var alljobs =  response.data.map(i=> {
@@ -19,6 +20,7 @@ var test = schedule.scheduleJob('23 14 * * *',function () {
 					if (existingJob) {
 						console.log("exist") 
 					}
+
 					if (!existingJob) {
 						new saveJob({
 						title: i.title,
@@ -30,8 +32,9 @@ var test = schedule.scheduleJob('23 14 * * *',function () {
 						created_at: i.created_at,
 						type: i.type,
 						date:  Date(),
-						expireAt: new Date(moment().add(14, 'days')),
-						jobPrivate: false
+						expireAt: moment().add(120, 'seconds'),
+						jobPrivate: false,
+						job_applied: false
 					}).save(function(err, doc) {
 						if(err){
 							console.log(err)
