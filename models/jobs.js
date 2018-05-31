@@ -12,7 +12,7 @@ const jobSchema = new Schema({
 	created_at: String,
 	type: String,
 	byuser: {type: Boolean, default: false},
-	author: String,
+	author: {type:String, default: 'By API'},
 	expireAt: {type: Date, expires:0},
 	date: {type:Date},
 	jobPrivate: {type: Boolean, default: false}

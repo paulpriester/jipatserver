@@ -8,7 +8,7 @@ function stripHTML(text) {
 }
 
 
-var test = schedule.scheduleJob(' 18 * * *',function () {
+var test = schedule.scheduleJob('52 16 * * *',function () {
 	 axios.get(`https://jobs.github.com/positions.json?search=`)
 	.then(response => {
 		console.log(response.data)

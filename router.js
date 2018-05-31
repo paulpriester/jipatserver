@@ -13,11 +13,14 @@ const updateCase = require('./controllers/updatecase');
 const addSkills = require('./controllers/addskills');
 const fetchJobs = require('./controllers/fetchjobs');
 const fetchOneJob = require('./controllers/fetchonejob');
+const fetchOneCase = require('./controllers/fetchonecase');
 const searchJobs = require('./controllers/searchjob');
 const deleteJob = require('./controllers/deletejob');
 const deleteCase = require('./controllers/deletecase');
 const deleteSkill = require('./controllers/deleteskill');
 const addJob = require('./controllers/addjob');
+const csvJob = require('./controllers/csvjobs');
+const addUserSkills = require('./controllers/userskills');
 const fetchStudents = require('./controllers/users');
 const passportService = require('./services/passport');
 const passport = require('passport');
@@ -38,14 +41,17 @@ module.exports = function(app) {
 	app.post('/invite', Invite.invite);
 	app.post('/addskills', addSkills.Skills)
 	app.post('/profile', requireAuth,  Authentication.signupDetail);
-	app.get('/fetchprofile/:id?', requireAuth, fetchProfile.fetchProfile )
+	app.get('/fetchprofile/:id?', requireAuth, fetchProfile.fetchProfile );
 	app.post('/sharejobs/:jobid', shareJobs.shareJobs)
 	app.get('/fetchUsers', fetchStudents.fetchStudent);
 	app.get('/fetchcaselength', requireAuth, fetchCaseLength.caselength)
 	app.get('/fetchJobs', fetchJobs.fetchJob);
-	app.get('/fetchonejob/:_id', fetchOneJob.fetchOneJob)
+ 	app.get('/csvJob', csvJob.csvjob);
+	app.get('/fetchonejob/:_id', fetchOneJob.fetchOneJob);
+	app.get('/fetchonecase/:_id', fetchOneCase.fetchOneCase);
 	app.get('/searchJobs/:title?/:location?', searchJobs.searchJob);
 	app.post('/addjob', requireAuth, addJob.Jobs);
+	app.post('/adduserskills', requireAuth, addUserSkills.skills);
 	app.delete('/deletejob/:id', deleteJob.deleteJob);
 	app.delete('/deletecase/:id', requireAuth, deleteCase.deleteCase);
 	app.delete('/deleteskill/:id', deleteSkill.deleteSkill);

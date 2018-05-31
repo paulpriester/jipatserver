@@ -213,7 +213,7 @@ exports.passwordReset = function (req, res) {
   });
 }
 
-exports.signupDetail = function(req, res, next) {
+exports.signupDetail = function(req, res) {
 	const firstName = req.body.firstName;
 	const lastName = req.body.lastName;
 	const about = req.body.about;

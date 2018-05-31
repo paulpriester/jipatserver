@@ -3,7 +3,7 @@ const Skills = require('../models/skills');
 exports.Skills = function(req, res) {
 	new Skills({
 		skill: req.body.skill,
-		date: Date()
+		date: Date.now()
 	})
 	.save(function(err, doc) {
 						if(err){

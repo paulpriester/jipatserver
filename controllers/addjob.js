@@ -1,4 +1,5 @@
 const Jobs = require('../models/jobs');
+const moment = require('moment')
 
 exports.Jobs = function(req, res) {
 	new Jobs({
@@ -11,7 +12,7 @@ exports.Jobs = function(req, res) {
 		created_at: req.body.created_at,
 		type: req.body.type,
 		author: req.user.firstName,
-		date:  Date(),
+		date:  Date.now(),
 		byuser: true,
 		jobPrivate: req.body.jobPrivate
 	})
@@ -24,3 +25,5 @@ exports.Jobs = function(req, res) {
 					}		
 				});
 }
+
+// moment(Date.now().format('MMMM Do YYYY'))
