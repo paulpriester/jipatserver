@@ -4,8 +4,7 @@ const mongoose = require('mongoose'),
 
 
 const skillSchema = new Schema({
-	skill: {type:String},
-	date: Date
+	skill: {type:String}
 });
 
 
