@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
   },
@@ -20,6 +20,7 @@
     "dotenv": "^5.0.1",
     "email-verification": "^0.4.6",
     "express": "^4.16.2",
+    "express-fileupload": "^0.4.0",
     "jwt-simple": "^0.5.1",
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.14",
