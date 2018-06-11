@@ -2,12 +2,12 @@ const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
 	  async = require('async'),
 	  crypto = require("crypto"),
-	  nodemailer = require('nodemailer'),
-	  config = require('../config');
+	  nodemailer = require('nodemailer');
+	  config = require('../config')
 
  function tokenForUser(user) {
 	  	const timestamp = new Date().getTime();
-	  	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+	  	return jwt.encode({ sub: user.id, iat: timestamp }, process.env.secret);
 	  }
 
 exports.signin = function(req, res, next) {
@@ -218,7 +218,8 @@ exports.signupDetail = function(req, res) {
 	const linkedin = req.body.linkedin;
 	const github = req.body.github;
 	const resume = req.body.resume;
-	const careergoals = req.body.careergoals
+	const careergoals = req.body.careergoals;
+	console.log(req);
 
 	User.findOneAndUpdate( {_id:req.user._id}, {$set: {"firstName": firstName, "lastName": lastName, "about": about, 
 											 "portfolio": portfolio, "linkedin": linkedin, "github": github, "resume": resume, "careergoals": careergoals}},
@@ -230,7 +231,3 @@ exports.signupDetail = function(req, res) {
 			}	
 		})
 	}
-
-
-
-
