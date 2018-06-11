@@ -19,6 +19,7 @@ const searchJobs = require('./controllers/searchjob');
 const deleteJob = require('./controllers/deletejob');
 const deleteCase = require('./controllers/deletecase');
 const deleteSkill = require('./controllers/deleteskill');
+const deleteUser = require('./controllers/deleteuser');
 const addJob = require('./controllers/addjob');
 const csvJob = require('./controllers/csvjobs');
 const addUserSkills = require('./controllers/userskills');
@@ -58,6 +59,7 @@ module.exports = function(app) {
 	app.delete('/deletejob/:id', deleteJob.deleteJob);
 	app.delete('/deletecase/:id', requireAuth, deleteCase.deleteCase);
 	app.delete('/deleteskill/:id', deleteSkill.deleteSkill);
+	app.delete('/deleteuser/:id', deleteUser.deleteUser);
 	app.post('/addcase/:id', requireAuth, Case.saveCase);
 	app.get('/fetchCase', requireAuth, fetchCase.fetchCase);
 	app.get('/fetchallcases', fetchAllCases.fetchCase);
