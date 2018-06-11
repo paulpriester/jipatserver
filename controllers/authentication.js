@@ -3,7 +3,6 @@ const User = require('../models/user'),
 	  async = require('async'),
 	  crypto = require("crypto"),
 	  nodemailer = require('nodemailer');
-	  config = require('../config')
 
  function tokenForUser(user) {
 	  	const timestamp = new Date().getTime();

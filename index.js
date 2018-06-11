@@ -20,7 +20,7 @@ mongoose.connect(process.env.DB, () => {
 app.use(morgan('combined'));
 app.use(cors());
 app.use(fileUpload());
-app.use(bodyParser.json({ type:'*/*', limit: "50mb" }));
+app.use(bodyParser.json({ type:'*/*' }));
 router(app);
 
 //Server Setup
