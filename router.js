@@ -28,6 +28,8 @@ const passportService = require('./services/passport');
 const passport = require('passport');
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false});
+const multi = require('connect-multiparty');
+const multimiddle = multi();
 
 module.exports = function(app) {
 	app.get('/', requireAuth, function(req, res) {
@@ -43,7 +45,7 @@ module.exports = function(app) {
 	app.post('/reset/:tokenId', Authentication.passwordReset);
 	app.post('/invite', Invite.invite);
 	app.post('/addskills', addSkills.Skills)
-	app.post('/profile', requireAuth,  Authentication.signupDetail);
+	app.post('/profile', requireAuth, multimiddle, Authentication.signupDetail);
 	app.get('/fetchprofile/:id?', requireAuth, fetchProfile.fetchProfile );
 	app.post('/sharejobs/:jobid', shareJobs.shareJobs)
 	app.get('/fetchUsers', fetchStudents.fetchStudent);
