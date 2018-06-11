@@ -21,6 +21,13 @@ app.use(morgan('combined'));
 app.use(cors());
 app.use(fileUpload());
 app.use(bodyParser.json({ type:'*/*' }));
+app.use(express.static(__dirname + '/'));
+//////////////////////
+app.get('*', (req, res) =>{
+  res.sendFile(path.resolve(__dirname, 'index.html'));
+});
+//////////////////////
+app.listen(port);
 router(app);
 
 //Server Setup
