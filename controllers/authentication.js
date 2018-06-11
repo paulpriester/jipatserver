@@ -211,6 +211,7 @@ exports.passwordReset = function (req, res) {
 }
 
 exports.signupDetail = function(req, res) {
+
 	const firstName = req.body.firstName;
 	const lastName = req.body.lastName;
 	const about = req.body.about;
@@ -218,7 +219,7 @@ exports.signupDetail = function(req, res) {
 	const linkedin = req.body.linkedin;
 	const github = req.body.github;
 	const resume = req.body.resume;
-	const careergoals = req.body.careergoals
+	const careergoals = req.body.careergoals;
 
 	User.findOneAndUpdate( {_id:req.user._id}, {$set: {"firstName": firstName, "lastName": lastName, "about": about, 
 											 "portfolio": portfolio, "linkedin": linkedin, "github": github, "resume": resume, "careergoals": careergoals}},
@@ -231,6 +232,23 @@ exports.signupDetail = function(req, res) {
 		})
 	}
 
+exports.studentScore = function(req, res) {
+	const score = req.body.score;
 
+	console.log(req.body)
+	User.findOneAndUpdate( {_id:req.params.id}, {$set: {'score': score}},
+		 function(err, user) {
+			if(err){
+				return res.send(err)
+			} else {
+				return res.send('successful')
+			}	
+		})
+	}
+
+	// let changes = {}
+	// if(req.body.firstName !=""){
+	// 	changes.firstName = req.body.firstName
+	// }
 
 
