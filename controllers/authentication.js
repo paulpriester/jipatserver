@@ -1,12 +1,13 @@
 const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
+	  config = require('../config'),
 	  async = require('async'),
 	  crypto = require("crypto"),
 	  nodemailer = require('nodemailer');
 
  function tokenForUser(user) {
 	  	const timestamp = new Date().getTime();
-	  	return jwt.encode({ sub: user.id, iat: timestamp }, process.env.secret);
+	  	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 	  }
 
 exports.signin = function(req, res, next) {
@@ -44,6 +45,7 @@ exports.signup = function(req, res, next) {
 			email: email,
 			password: password,
 			admin: false,
+		    active: false,
 			firstName: '',
 			lastName: '',
 			about: '',
@@ -99,6 +101,22 @@ exports.signupAdmin = function(req, res, next) {
 		});
 	});
 };
+
+exports.activateUser = function (req,res) {
+	const active = req.body.active
+	console.log(req)
+
+	User.findOneAndUpdate( {_id: req.params.id}, {$set: {'active': active}},
+		function(err,user) {
+		if(err){
+				console.log(err)
+				return res.send(err)
+			} else {
+				console.log(user)
+				return res.send('successful')
+			}	
+		})
+}
 
 exports.forgotPassword = function(req, res, next) {
 	async.waterfall([

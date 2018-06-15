@@ -12,9 +12,7 @@ const express = require('express'),
 	  passport = require('passport');
 
 // DB Setup
-mongoose.connect(process.env.DB, () => {
-	console.log("Connected to Job Board Database")
-});
+mongoose.connect('mongodb://localhost/auth');
 
 //App Setup
 app.use(morgan('combined'));
@@ -22,12 +20,7 @@ app.use(cors());
 app.use(fileUpload());
 app.use(bodyParser.json({ type:'*/*' }));
 app.use(express.static(__dirname + '/'));
-//////////////////////
-app.get('*', (req, res) =>{
-  res.sendFile(path.resolve(__dirname, 'index.html'));
-});
-//////////////////////
-app.listen(port);
+
 router(app);
 
 //Server Setup
@@ -36,4 +29,6 @@ const server = http.createServer(app);
 server.listen(port);
 console.log('server is running', port);
 
-// process.env.DB
+// mongoose.connect(process.env.DB, () => {
+// 	console.log("Connected to Job Board Database")
+// });
