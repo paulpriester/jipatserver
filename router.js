@@ -37,6 +37,8 @@ module.exports = function(app) {
 	});
 	
 	app.post('/signin', requireSignin, Authentication.signin);
+	app.post('/studentscore/:id', Authentication.studentScore);
+    app.post('/activate/:id', Authentication.activateUser)
 	app.post('/signup', Authentication.signup);
 	app.post('/signupadmin', Authentication.signupAdmin);
 	app.post('/forgot', Authentication.forgotPassword);

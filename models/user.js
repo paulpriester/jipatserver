@@ -16,6 +16,7 @@ const userSchema = new Schema({
 	github: String,
 	linkedin: String,
 	resume: String,
+	active: {type: Boolean, default: false},
 	careergoals: String,
 	dateCreated: Date,
 	admin: {type: Boolean, default: false},

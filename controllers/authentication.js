@@ -1,7 +1,7 @@
 const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
+	  config = require('../config'),
 	  async = require('async'),
-	  crypto = require("crypto"),
 	  nodemailer = require('nodemailer');
 
  function tokenForUser(user) {
@@ -44,6 +44,7 @@ exports.signup = function(req, res, next) {
 			email: email,
 			password: password,
 			admin: false,
+		    active: false,
 			firstName: '',
 			lastName: '',
 			about: '',
@@ -99,6 +100,22 @@ exports.signupAdmin = function(req, res, next) {
 		});
 	});
 };
+
+exports.activateUser = function (req,res) {
+	const active = req.body.active
+	console.log(req)
+
+	User.findOneAndUpdate( {_id: req.params.id}, {$set: {'active': active}},
+		function(err,user) {
+		if(err){
+				console.log(err)
+				return res.send(err)
+			} else {
+				console.log(user)
+				return res.send('successful')
+			}	
+		})
+}
 
 exports.forgotPassword = function(req, res, next) {
 	async.waterfall([
@@ -210,6 +227,7 @@ exports.passwordReset = function (req, res) {
 }
 
 exports.signupDetail = function(req, res) {
+
 	const firstName = req.body.firstName;
 	const lastName = req.body.lastName;
 	const about = req.body.about;
@@ -218,8 +236,8 @@ exports.signupDetail = function(req, res) {
 	const github = req.body.github;
 	const resume = req.body.resume;
 	const careergoals = req.body.careergoals;
-	console.log(req);
 
+	console.log(req);
 	User.findOneAndUpdate( {_id:req.user._id}, {$set: {"firstName": firstName, "lastName": lastName, "about": about, 
 											 "portfolio": portfolio, "linkedin": linkedin, "github": github, "resume": resume, "careergoals": careergoals}},
 		 function(err, user) {
@@ -230,3 +248,22 @@ exports.signupDetail = function(req, res) {
 			}	
 		})
 	}
+
+exports.studentScore = function(req, res) {
+	const score = req.body.score;
+
+	console.log(req.body)
+	User.findOneAndUpdate( {_id:req.params.id}, {$set: {'score': score}},
+		 function(err, user) {
+			if(err){
+				return res.send(err)
+			} else {
+				return res.send('successful')
+			}	
+		})
+	}
+
+	// let changes = {}
+	// if(req.body.firstName !=""){
+	// 	changes.firstName = req.body.firstName
+	// }
