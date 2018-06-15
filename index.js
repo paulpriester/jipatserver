@@ -21,6 +21,8 @@ app.use(morgan('combined'));
 app.use(cors());
 app.use(fileUpload());
 app.use(bodyParser.json({ type:'*/*' }));
+app.use(express.static(__dirname + '/'));
+
 router(app);
 
 //Server Setup
@@ -28,3 +30,5 @@ const port = process.env.PORT || 3090;
 const server = http.createServer(app);
 server.listen(port);
 console.log('server is running', port);
+
+// process.env.DB

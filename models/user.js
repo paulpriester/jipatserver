@@ -23,6 +23,7 @@ const userSchema = new Schema({
 	resetPasswordToken: String,
 	resetPasswordExpires: Date,
 	admin: {type: Boolean, default: false},
+	score: {type: Number, default: 0},
 	skills: {type: []}
 });
 

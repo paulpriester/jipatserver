@@ -8,6 +8,7 @@ exports.saveCase = function(req, res) {
 		jobTitle: job.title,
 		job_id: job.jobid,
 		jobDescription: job.description,
+		job_location: job.location,
 		studentName:`${req.user.firstName} ${req.user.lastName}`,
 		studentId: req.user._id,
 		company: job.company,
