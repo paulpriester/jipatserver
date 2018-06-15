@@ -28,7 +28,7 @@ exports.invite = function(req, res, next) {
 			  from: 'nodemailertest507@gmail.com', // sender address
 			  to: invitation.email, // list of receivers
 			  subject: invitation.name, // Subject line
-			  html: '<p>Hello </p>'+ invitation.name + '<p>Here is the Link to Sign up</p>' + "<a href='http://localhost:8080/signup' >here</a>" // plain text body
+			  html: '<p>Hello </p>'+ invitation.name + '<p>Here is the Link to Sign up</p>' + "<a href='http://jipat.herokuapp.com/signup' >here</a>" // plain text body
 			};
 
 			transporter.sendMail(mailOptions, function (err, info) {
@@ -57,7 +57,7 @@ exports.invite = function(req, res, next) {
 			  from: 'nodemailertest507@gmail.com', // sender address
 			  to: invitation.email, // list of receivers
 			  subject: invitation.name, // Subject line
-			  html: '<p>Hello </p>'+ invitation.name + '<p>Here is the Link to Sign up</p>' + "<a href='http://localhost:8080/signupad' >here</a>" // plain text body
+			  html: '<p>Hello </p>'+ invitation.name + '<p>Here is the Link to Sign up</p>' + "<a href='http://jipat.herokuapp.com/signupad' >here</a>" // plain text body
 			};
 
 			transporter.sendMail(mailOptions, function (err, info) {
