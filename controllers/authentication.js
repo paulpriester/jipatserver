@@ -1,6 +1,5 @@
 const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
-	  config = require('../config'),
 	  async = require('async'),
 	  nodemailer = require('nodemailer');
 
