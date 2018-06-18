@@ -17,6 +17,7 @@ const userSchema = new Schema({
 	active: {type: Boolean, default: false},
 	linkedin: String,
 	resume: String,
+	active: {type: Boolean, default: false},
 	careergoals: String,
 	dateCreated: Date,
 	admin: {type: Boolean, default: false},
