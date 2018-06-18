@@ -12,7 +12,9 @@ const express = require('express'),
 	  passport = require('passport');
 
 // DB Setup
-mongoose.connect('mongodb://localhost/auth');
+mongoose.connect(process.env.DB, () => {
+	console.log("Connected to Job Board Database")
+});
 
 //App Setup
 app.use(morgan('combined'));
@@ -29,6 +31,4 @@ const server = http.createServer(app);
 server.listen(port);
 console.log('server is running', port);
 
-// mongoose.connect(process.env.DB, () => {
-// 	console.log("Connected to Job Board Database")
-// });
+// process.env.DB
