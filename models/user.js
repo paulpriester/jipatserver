@@ -19,6 +19,7 @@ const userSchema = new Schema({
 	careergoals: String,
 	dateCreated: Date,
 	admin: {type: Boolean, default: false},
+	ready: {type: Boolean, default: false},
 	resetPasswordToken: String,
 	resetPasswordExpires: Date,
 	admin: {type: Boolean, default: false},
