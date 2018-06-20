@@ -21,7 +21,6 @@ const deleteCase = require('./controllers/deletecase');
 const deleteSkill = require('./controllers/deleteskill');
 const deleteUser = require('./controllers/deleteuser');
 const addJob = require('./controllers/addjob');
-const csvJob = require('./controllers/csvjobs');
 const addUserSkills = require('./controllers/userskills');
 const fetchStudents = require('./controllers/users');
 const passportService = require('./services/passport');
@@ -50,9 +49,8 @@ module.exports = function(app) {
 	app.get('/fetchprofile/:id?', requireAuth, fetchProfile.fetchProfile );
 	app.post('/sharejobs/:jobid', shareJobs.shareJobs)
 	app.get('/fetchUsers', fetchStudents.fetchStudent);
-	app.get('/fetchcaselength', requireAuth, fetchCaseLength.caselength)
+	app.get('/fetchcaselength/:id?', requireAuth, fetchCaseLength.caselength)
 	app.get('/fetchJobs', fetchJobs.fetchJob);
- 	app.get('/csvJob', csvJob.csvjob);
 	app.get('/fetchonejob/:_id', fetchOneJob.fetchOneJob);
 	app.get('/fetchonecase/:_id', fetchOneCase.fetchOneCase);
 	app.get('/searchJobs/:title?/:location?', searchJobs.searchJob);
@@ -63,7 +61,7 @@ module.exports = function(app) {
 	app.delete('/deleteskill/:id', deleteSkill.deleteSkill);
 	app.delete('/deleteuser/:id', deleteUser.deleteUser);
 	app.post('/addcase/:id', requireAuth, Case.saveCase);
-	app.get('/fetchCase', requireAuth, fetchCase.fetchCase);
+	app.get('/fetchCase/:id?', requireAuth, fetchCase.fetchCase);
 	app.get('/fetchallcases', fetchAllCases.fetchCase);
 	app.get('/fetchUsers/:search?', fetchUsers.fetchUser);
 	app.get('/fetchskills', fetchSkills.fetchSkill)
