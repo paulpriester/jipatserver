@@ -2,7 +2,6 @@ const User = require('../models/user'),
 	  jwt = require('jwt-simple'),
 	  config = require('../config'),
 	  async = require('async'),
-	  crypto = require("crypto"),
 	  nodemailer = require('nodemailer');
 
  function tokenForUser(user) {
@@ -13,13 +12,14 @@ const User = require('../models/user'),
 exports.signin = function(req, res, next) {
 	// User has already had their email and password auth'd
 	// We need to give them a token
-	let type; 
+	let type;
+	let active = req.body.active
 	if(req.user.admin) {
 		type = 'admin'
 	} else {
 		type = 'student'
 	}
-	res.send({ token: tokenForUser(req.user), type: type});
+	res.send({ token: tokenForUser(req.user), type: type, active: active});
 }
 
 exports.signup = function(req, res, next) {
@@ -90,7 +90,8 @@ exports.signupAdmin = function(req, res, next) {
 			firstName: '',
 			lastName: '',
 			about: '',
-			admin: true
+			admin: true,
+			active: true
 		});
 
 		user.save(function(err) {
@@ -154,7 +155,7 @@ exports.forgotPassword = function(req, res, next) {
 				subject: 'Job Board Password Reset',
 				text: 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
           			  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          			  'http://localhost:8080/reset/' + token + '\n\n' +
+          			  'http://jipat.herokuapp.com/reset/' + token + '\n\n' +
           			  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
 			}
 			smtpTransport.sendMail(mailOptions, function(err) {

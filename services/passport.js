@@ -30,6 +30,7 @@ const localLogin = new LocalStrategy(localOptions, function(email, password,done
 const jwtOptions = {
 	jwtFromRequest: ExtractJwt.fromHeader('authorization'),
 	secretOrKey: config.secret
+	
 };
 
 // Create JWT strategy
