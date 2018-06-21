@@ -13,13 +13,14 @@ exports.signin = function(req, res, next) {
 	// User has already had their email and password auth'd
 	// We need to give them a token
 	let type;
-	let active = req.body.active
-	if(req.user.admin) {
+	if(req.user.admin && req.user.active) {
 		type = 'admin'
-	} else {
+	} else if (req.user.admin == false && req.user.active == true){
 		type = 'student'
+	} else if (req.user.admin == false && req.user.active){
+   	  return res.status(422).send({ error: 'Email is not active' });
 	}
-	res.send({ token: tokenForUser(req.user), type: type, active: active});
+	res.send({ token: tokenForUser(req.user), type: type});
 }
 
 exports.signup = function(req, res, next) {
