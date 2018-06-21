@@ -30,6 +30,8 @@ const requireSignin = passport.authenticate('local', { session: false});
 const multi = require('connect-multiparty');
 const multimiddle = multi();
 
+const upload = require('./controllers/upload')
+
 module.exports = function(app) {
 	app.get('/', requireAuth, function(req, res) {
 		res.send({ message: 'Super secret code is 1231234' });
@@ -66,4 +68,5 @@ module.exports = function(app) {
 	app.get('/fetchUsers/:search?', fetchUsers.fetchUser);
 	app.get('/fetchskills', fetchSkills.fetchSkill)
 	app.post('/update/:id', updateCase.updatecase);
+	app.post('/upload', requireAuth, upload.uploadImage)
 }
